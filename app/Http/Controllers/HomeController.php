@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Client;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -33,9 +34,12 @@ class HomeController extends Controller
         $userlist = User::All();
         $users = $userlist->count();
 
+        $productlist = Product::All();
+        $products = $productlist->count();
 
 
-        return view('home', compact('clients', 'users'));
+
+        return view('home', compact('clients', 'users', 'products'));
    
     }
 }

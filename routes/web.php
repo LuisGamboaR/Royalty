@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('usuarios','WorkerController');
 Route::resource('clientes','ClientController');
+Route::resource('productos','ProductController');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">388,688</h2>
+                                    <h2 class="number">{{ $products }}</h2>
                                     <span class="desc">Productos</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-shopping-cart"></i>

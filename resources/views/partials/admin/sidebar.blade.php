@@ -42,11 +42,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">
+                                    <a href="{{ route('productos.create')}}">
                                         <i class="fas fa-th"></i>Registrar producto</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">
+                                    <a href="{{ route('productos.index')}}">
                                         <i class="fas fa-th"></i>Listado de productos</a>
                                 </li>
                             
