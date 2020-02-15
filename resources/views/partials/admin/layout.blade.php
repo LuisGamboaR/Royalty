@@ -63,18 +63,19 @@
 
   <!-- Jquery JS-->
   <script src="{{ asset('assets\admin\vendor\jquery-3.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/admin/bower_components/jquery/js/jquery.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap JS-->
     <script src="{{ asset('assets\admin\vendor\bootstrap-4.1\popper.min.js') }}"></script>
     <script src="{{ asset('assets\admin\vendor\bootstrap-4.1\bootstrap.min.js') }}"></script>
     <!-- Vendor JS       -->
     <script src="{{ asset('assets\admin\vendor\slick\slick.min.js') }}">
     </script>
-    <script src="{{ asset('assets\admin\vendor\wow\wow.min.js') }}"></script>
     <script src="{{ asset('assets\admin\vendor\animsition\animsition.min.js') }}"></script>
-    <script src="{{ asset('assets\admin\vendor\bootstrap-progressbar\bootstrap-progressbar.min.js') }}">
-    </script>
-    <script src="{{ asset('assets\admin\vendor\counter-up\jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('assets\admin\vendor\counter-up\jquery.counterup.min.js') }}">
+  
+
 
 <script type="text/javascript" src="{{ asset('assets\admin\sweet_alert.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets\admin\sweetalert2.all.min.js') }}"></script>
@@ -94,6 +95,7 @@
     <!-- Main JS-->
     <script src="{{ asset('assets\admin\js\main.js') }}"></script>
     @include('sweetalert::alert')
+    @yield('script')
 
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 

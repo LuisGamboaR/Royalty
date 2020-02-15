@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Client;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $clientlist = Client::All();
+        $clients = $clientlist->count();
+
+        $userlist = User::All();
+        $users = $userlist->count();
+
+
+
+        return view('home', compact('clients', 'users'));
+   
     }
 }

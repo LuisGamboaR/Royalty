@@ -11,7 +11,7 @@
                     <div class="image img-cir img-120">
                         <img src="{{ asset('assets/admin/images/icon/avatar-big-01.jpg') }}" alt="John Doe" />
                     </div>
-                    <!-- <h4 class="name"></h4> -->
+                 <h4 class="name"> {{ Auth::user()->name}} {{ Auth::user()->lastname}} </h4>
                     <a  href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -61,11 +61,11 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">
+                                    <a href="{{ route('clientes.create')}}">
                                         <i class="fas fa-suitcase"></i>Registrar cliente</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">
+                                    <a href="{{ route('clientes.index')}}">
                                         <i class="fas fa-suitcase"></i>Listado de clientes</a>
                                 </li>
                             

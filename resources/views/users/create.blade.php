@@ -12,7 +12,10 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<center><h4>Registrar usuario</h4></center>
+										<center><h4 class="box-title">Registrar usuario</h4>
+										<p>Los campos que contengan (<span style="color:red">*</span>) son
+                                                obligatorios</p>
+												</center>
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
