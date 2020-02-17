@@ -30,7 +30,7 @@
                  
                         <li>
                             <a href="{{ route('home') }}">
-                            <i class="fas fa-home"></i></i>Home</a>
+                            <i class="fas fa-home"></i></i>Inicio</a>
                         </li>
 
                         <li class="">
@@ -92,9 +92,44 @@
                             </ul>
                         </li>
 
+                        <li class="">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-usd"></i>Ventas
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                              
+                                <li>
+                                    <a href="{{ route('clientes-productos.index') }}">
+                                        <i class="fa fa-usd"></i>Listado de ventas</a>
+                                </li>
+                            
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-cog "></i>Mantenimiento
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                              
+                                <li>
+                                    <a href="{{ route('backup.index') }}">
+                                        <i class="fa fa-cog "></i>Backup</a>
+                                </li>
+                            
+                            </ul>
+                        </li>
+
+
 
                   
-                    
+                        
                  
                     
                         

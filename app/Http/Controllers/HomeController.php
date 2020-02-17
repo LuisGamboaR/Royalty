@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Client;
 use App\Product;
+use App\ClientProduct;
+use App\Dinero;
+use DB;
 
 class HomeController extends Controller
 {
@@ -37,9 +40,21 @@ class HomeController extends Controller
         $productlist = Product::All();
         $products = $productlist->count();
 
+        $ventalist = ClientProduct::All();
+        $ventas = $ventalist->count();
 
 
-        return view('home', compact('clients', 'users', 'products'));
+        $dinero = DB::select('SELECT dinero FROM dineros WHERE id = 1');
+
+      
+
+      
+        
+    
+
+
+
+        return view('home', compact('clients', 'users', 'products', 'dinero', 'ventas'));
    
     }
 }

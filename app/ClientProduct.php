@@ -8,5 +8,5 @@ class ClientProduct extends Model
 {
     protected $table='client_product';
 
-	protected $fillable=['material_id','supplier_id', 'cantidad', 'total', 'precio'];
+	protected $fillable=['client_id','product_id', 'cantidad', 'total', 'precio'];
 }

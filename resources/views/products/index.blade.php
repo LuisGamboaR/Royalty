@@ -40,6 +40,8 @@
                                                                 <td>{{ $item->stock_actual}} disponibles</td>
                                                                 <td>{{ $item->precio}}</td>
                                                                 <td>{{ $item->descripcion}}</td>
+
+                                                                
                                                                 
 
 
@@ -139,78 +141,112 @@ function destroy(product_id) {
 
 
 
-
-
-
 function venta(product_id){
+
+$.ajax ({
+  "_token": "{{ csrf_token() }}",
+
+ url: "{{ route('producto.getproducts') }}",
+ data: {
+     
+     "product_id": product_id
+ },
+
+ dataType: 'html',
+ type: 'get',
+
+ success: function(response){
+     
+  console.log(response);
+
+
+     var obj=JSON.parse(response);
+     $('#inputss').val(obj[0].proNombre);
+     $('#input2').val(obj[0].id);
+     $('#input3').val(obj[0].precio);
+
+     $("#Productos").empty();
+    
+
+   cliente();
+    
+    
+
+      }   
+   })
+}
+
+
+
+
+function cliente(){
+
+$.ajax ({
+
+
+ url: "{{ route('cliente.getclients') }}",
+
+ dataType: 'html',
+ type: 'get',
+
+ success: function(response2){
+     
+  console.log(response2);
+
+
+let datos =  JSON.parse(response2)
+
+    $("#cliente").empty();
+    $("#cliente").append(
+      "<option value=''>Selecciona un cliente</option>");
+
+      $.each(datos, function (index, value){
+        $("#cliente").append(
+          `<option value="${index}">${value}</option>`
+        );
+      });
 
   
 
-Swal.fire({
-title: "Venta de producto",
-html:  ` 
-
-`,
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Aceptar',
-cancelButtonText: 'Cancelar'
-
-}).then((result) => {
-if (result.value) {
-  //Tomo el valor del input
-
-//Mando el valor del input para que se reemplace en el form
-
-
-
-}
-})
+     $("#AjaxM").modal("show");
 
 
     
-    
 
+      }   
+   })
 }
-
-
 
 
 function products(){
-    var product = `
-    <div class="row">
 
 
+        var product = `
 
- 
-      <div class="col mt-3">
-    <label class="alinear">Medida<span style="color:red">*</span></label>
-    <select class="form-control" id="medida" name="medida">
 
-        <option value="UNITARIO">UNITARIO</option>
-        <option value="METROS">METROS</option>
-        <option value="CENTIMETROS">CENTIMETROS</option>
-        <option value="PULGADAS">PULGADAS</option>
+    
+<form action="" class="form-horizontal">
+    <div class="form-group">
 
-    </select>
-</div>
-  <div class="col mt-3">
-      <label class="alinear">Cantidad<span style="color:red">*</span></label>
-      <input type="text" id="cantidadMateria" name="cantidadMateria" placeholder="Introduzca la cantidad utilizada">
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Cliente</strong><span style="color:red">*</span>
+           <select name="cliente" id="cliente" class="form-control">
+
       
-  </div>
-</div>
-
-
-
+           
+           </select>
+        </div>
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Cantidad</strong><span style="color:red">*</span>
+            <input type="text" class="form-control"  style="text-align:left;" placeholder="Cantidad">
+        </div>
+    </div>
+</form>
+   
 `;
-
-$("#Productos").append(product);
-}
-
-</script>
-
+  
+    $("#Productos").append(product);
+    }
 
 
 
@@ -218,3 +254,97 @@ $("#Productos").append(product);
 </script>
 @endsection
 
+
+<div class="modal fade" id="AjaxM" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div class="text-center">  <h5 class="modal-title text-center" id="exampleModalLongTitle" >Venta</h5></div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+      <div class="text-center">
+<h4>Productos vendidos</h4>
+<p>Por favor seleccione los clientes que realizaron la compra y la cantidad que compró</p>
+<p>Los campos que contengan (<span style="color:red">*</span>) son
+                                                obligatorios</p>
+</div>
+
+
+
+
+<form action="{{ route('clientes-productos.store') }}" method="POST" class="form-horizontal">
+{{csrf_field()}}
+
+    <div class="form-group">
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Producto</strong><span style="color:red">*</span>
+        <input type="hidden" id="input2" name="product_id" class="form-control"  style="text-align:left;" >
+        <input type="hidden" id="input3" name="precio" class="form-control"  style="text-align:left;" >
+
+
+            <input type="text" id="inputss"  class="form-control"  style="text-align:left;" disabled>
+        </div>
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Cliente</strong><span style="color:red">*</span>
+           <select name="client_id" id="cliente" class="form-control">
+
+      
+           
+           </select>
+        </div>
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Cantidad</strong><span style="color:red">*</span>
+            <input type="text" class="form-control" name="cantidad" style="text-align:left;" placeholder="Cantidad">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+
+<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+</form>
+
+
+
+
+
+<div id="Productos">
+
+</div>
+
+
+
+
+<div class="text-center mt-3 mb-3">
+<!-- 
+<button onclick="products();" value="click">
+<i class="fa fa-plus" style="font-size: 35px;"> 
+</i>
+</button> -->
+
+</div>
+
+      </div>
+      <div class="modal-footer">
+   
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<style>
+
+.modal-header {
+  background-color: #4272d7;
+}
+
+
+</style>
