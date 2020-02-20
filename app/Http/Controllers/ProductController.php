@@ -6,6 +6,9 @@ use App\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\ProductUpdateRequest;
+use  App\Bitacora;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class ProductController extends Controller
@@ -63,13 +66,12 @@ class ProductController extends Controller
 
 
 
-// $bitacoras = new App\Bitacora;
+ $bitacoras = new Bitacora;
 
-// $bitacoras->user =  Auth::user()->name;
-// $bitacoras->lastname =  Auth::user()->lastname;
-// $bitacoras->role =  Auth::user()->role;
-// $bitacoras->action = 'Ha registrado un nuevo trabajador';
-// $bitacoras->save();
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha registrado un nuevo producto';
+ $bitacoras->save();
 
         $product->save();
 
@@ -89,6 +91,39 @@ class ProductController extends Controller
         //
     }
 
+    public function suma(Request $request){
+
+
+        $products = DB::table('products')->get();
+        
+        //Actualizo el inventario
+        
+        $inventario = DB::select('SELECT * FROM products WHERE id = ?' , 
+        [$request->product_id]);
+
+       $sumarAlInventario = $inventario[0]->stock_actual + $request->suma;
+
+
+        $actualizarInventario = Product::find($request->product_id);
+
+        $actualizarInventario->stock_actual = $sumarAlInventario;
+
+
+        $actualizarInventario->save();
+
+        $bitacoras = new Bitacora;
+
+        $bitacoras->user =  Auth::user()->name;
+        $bitacoras->lastname =  Auth::user()->lastname;
+        $bitacoras->action = 'Ha sumado stock a un producto';
+        $bitacoras->save();
+       
+               Alert::success('Operación realizada con éxito','¡Cantidad añadida al stock!');
+
+        return redirect()->route('productos.index');
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,6 +136,7 @@ class ProductController extends Controller
 
         return view('products.edit', compact('item'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -120,6 +156,14 @@ class ProductController extends Controller
 
         $productsUpdate->save();
 
+        
+ $bitacoras = new Bitacora;
+
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha editado un producto';
+ $bitacoras->save();
+
         Alert::success('Operación realizada con éxito','¡Producto editado!');
 
         return redirect()->route('productos.index');
@@ -135,15 +179,16 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $productDelete = Product::findOrFail($id);
-		
-        // $bitacorasDelete = new App\Bitacora;
+        $productDelete->delete();
         
-        // $bitacorasDelete->user =  Auth::user()->name;
-        // $bitacorasDelete->lastname =  Auth::user()->lastname;
-        // $bitacorasDelete->role =  Auth::user()->role;
-        // $bitacorasDelete->action = 'Ha eliminado una materia prima';
-        // $bitacorasDelete->save();
-                $productDelete->delete();
+        $bitacorasDelete = new Bitacora;
+        
+        $bitacorasDelete->user =  Auth::user()->name;
+        $bitacorasDelete->lastname =  Auth::user()->lastname;
+        $bitacorasDelete->action = 'Ha eliminado un producto';
+        $bitacorasDelete->save();
+
+             
                 Alert::success('Operación realizada con éxito','¡Producto eliminado!');
         
                 return redirect()->route('productos.index');

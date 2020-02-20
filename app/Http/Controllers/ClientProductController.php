@@ -7,6 +7,9 @@ use App\Product;
 use App\Client;
 use App\Dinero;
 use App\ClientProduct;
+use  App\Bitacora;
+use Illuminate\Support\Facades\Auth;
+
 use DB;
 
 use RealRashid\SweetAlert\Facades\Alert;
@@ -106,7 +109,44 @@ $clientesArray = [];
 
        $clipro->total = $total;
 
-       $clipro->save();
+    
+
+
+
+        
+
+       
+       $products = DB::table('products')->get();
+        
+       //Actualizo el inventario
+       
+       $inventario = \DB::select('SELECT * FROM products WHERE id = ?' , 
+       [$request->product_id]);
+
+     
+      $restarAlInventario = $inventario[0]->stock_actual - $request->cantidad;
+
+
+       $actualizarInventario = Product::find($request->product_id);
+
+       $actualizarInventario->stock_actual = $restarAlInventario;
+       
+
+       if ($actualizarInventario['stock_actual'] < 0 ) {
+        Alert::error('No puedes vender mas productos de los que existen en stock','¡Error en la venta!');
+  
+        return redirect()->route('productos.index');
+        die();
+  }
+  
+  $clipro->save();
+
+
+       $actualizarInventario->save();
+
+    
+
+
 
 
        $dinero = DB::table('dineros')->get();
@@ -135,13 +175,12 @@ $clientesArray = [];
   
 
 
-// $bitacoras = new App\Bitacora;
+ $bitacoras = new Bitacora;
 
-// $bitacoras->user =  Auth::user()->name;
-// $bitacoras->lastname =  Auth::user()->lastname;
-// $bitacoras->role =  Auth::user()->role;
-// $bitacoras->action = 'Ha registrado un nuevo trabajador';
-// $bitacoras->save();
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha registrado una venta';
+ $bitacoras->save();
 
 
         Alert::success('Operación realizada con éxito','¡Venta registrada!');

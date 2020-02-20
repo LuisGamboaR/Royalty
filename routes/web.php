@@ -22,6 +22,10 @@ Route::resource('usuarios','WorkerController');
 Route::resource('clientes','ClientController');
 Route::resource('productos','ProductController');
 Route::resource('clientes-productos','ClientProductController');
+Route::resource('bitacoras','BitacoraController');
+Route::resource('gastos','GastoController');
+
+
 
 
 /**************************************************************\
@@ -40,6 +44,9 @@ Route::get('backup/delete/{filename}', 'BackupController@delete')->name('backup.
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/suma', 'ProductController@suma')->name('producto.suma');
 
 //AJAX
 Route::get('/getproducts', 'ClientProductController@getproducts')->name('producto.getproducts');

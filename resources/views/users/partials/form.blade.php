@@ -35,8 +35,8 @@
            
         </div>
         <div class="col mt-3">
-        {{ Form::label('password-confirm', 'Confirmar contraseña') }}<span class="text-danger"> *</span>
-            {{ Form::password('password-confirm', ['class' => "form-control $errors->has('password-confirm') ? ' is-invalid' : ''", 'id' => 'password-confirm', 'maxlength' => 16, 'placeholder' => 'Confirme la contraseña']) }}
+        {{ Form::label('password_confirmation', 'Confirmar contraseña') }}<span class="text-danger"> *</span>
+            {{ Form::password('password_confirmation', ['class' => "form-control $errors->has('password_confirmation') ? ' is-invalid' : ''", 'id' => 'password_confirmation', 'maxlength' => 16, 'placeholder' => 'Confirme la contraseña']) }}
         
         </div>
     </div>

@@ -11,7 +11,7 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<center><h4>Listado de productos</h4></center>
+										<center><h4>Listado de ventas</h4></center>
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
@@ -41,8 +41,8 @@
                                                                 <td>{{ $item->cliNombre}}</td>
                                                                 <td>{{ $item->proNombre}} </td>
                                                                 <td>{{ $item->cantidad}} comprados</td>
-                                                                <td>Se vendió a {{ $item->precio}} BsS. c/u</td>
-                                                                <td>{{ $item->total}} BsS.</td>
+                                                                <td>Se vendió a {{ number_format($item->precio)}} BsS. c/u</td>
+                                                                <td>{{ number_format($item->total)}} BsS.</td>
                                                                 
 
 

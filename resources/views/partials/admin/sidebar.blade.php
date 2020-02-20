@@ -33,6 +33,32 @@
                             <i class="fas fa-home"></i></i>Inicio</a>
                         </li>
 
+                        <li>
+                            <a href="{{ route('clientes-productos.index') }}">
+                            <i class="fas fa-usd"></i></i>Ventas</a>
+                        </li>
+                      
+
+                        <li class="">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-credit-card"></i>Gastos
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{{ route('gastos.create')}}">
+                                        <i class="fas fa-credit-card"></i>Registrar gasto</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('gastos.index')}}">
+                                        <i class="fas fa-credit-card"></i>Listado de gastos</a>
+                                </li>
+                            
+                            </ul>
+                        </li>
+
                         <li class="">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-th"></i>Productos
@@ -92,22 +118,8 @@
                             </ul>
                         </li>
 
-                        <li class="">
-                            <a class="js-arrow" href="#">
-                                <i class="fa fa-usd"></i>Ventas
-                                <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                              
-                                <li>
-                                    <a href="{{ route('clientes-productos.index') }}">
-                                        <i class="fa fa-usd"></i>Listado de ventas</a>
-                                </li>
-                            
-                            </ul>
-                        </li>
+                      
+                        
 
                         <li class="">
                             <a class="js-arrow" href="#">
@@ -122,6 +134,11 @@
                                     <a href="{{ route('backup.index') }}">
                                         <i class="fa fa-cog "></i>Backup</a>
                                 </li>
+
+                                <li>
+                            <a href="{{ route('bitacoras.index') }}">
+                            <i class="fas fa-cog"></i></i>Bitacora</a>
+                                 </li>
                             
                             </ul>
                         </li>

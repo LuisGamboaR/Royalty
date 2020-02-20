@@ -15,6 +15,9 @@
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
+                                    <div class="float-right mb-2" >
+                                            <a href="{{ route('clientes.create') }}" class="btn btn-primary">Registrar cliente</a>
+                                        </div>
                                     <div class="table-responsive table--no-card m-b-30">
                                     <table  class="table table-striped table-bordered nowrap">
                                         <thead>
@@ -53,7 +56,7 @@
         style="font-size: 20px"></i></button>
 
                                    <!--//Con este formulario se manda a la funcion destroy para borrar -->
-                                   {!! Form::open(['route' =>
+                                  {!! Form::open(['route' =>
                                                                     ['clientes.destroy',
                                                                     $item->id], 'method' => 'DELETE', 'id' =>
                                                                     'confirm-delete']) !!}

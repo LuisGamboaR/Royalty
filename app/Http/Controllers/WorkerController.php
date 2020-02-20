@@ -7,7 +7,10 @@ use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UserUpdateRequest;
+use  App\Bitacora;
 
 
 use RealRashid\SweetAlert\Facades\Alert;
@@ -37,13 +40,14 @@ class WorkerController extends Controller
         return view('users.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\UserCreateRequest $request)
 {
     
         $user = new User;
@@ -80,18 +84,17 @@ class WorkerController extends Controller
 
 
 
+  $user->save();
 
 
+ $bitacoras = new Bitacora;
 
-// $bitacoras = new App\Bitacora;
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha registrado un nuevo usuario';
+ $bitacoras->save();
 
-// $bitacoras->user =  Auth::user()->name;
-// $bitacoras->lastname =  Auth::user()->lastname;
-// $bitacoras->role =  Auth::user()->role;
-// $bitacoras->action = 'Ha registrado un nuevo trabajador';
-// $bitacoras->save();
-
-        $user->save();
+       
 
         
 
@@ -139,6 +142,18 @@ class WorkerController extends Controller
 
 
         $usersUpdate->save();
+
+        
+
+ $bitacoras = new Bitacora;
+
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha editado un usuario';
+ $bitacoras->save();
+
+    
+
 
         Alert::success('Operación realizada con éxito','¡Usuario editado!');
 

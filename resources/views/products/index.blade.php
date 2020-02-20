@@ -15,6 +15,9 @@
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
+                                    <div class="float-right mb-2" >
+                                            <a href="{{ route('productos.create') }}" class="btn btn-primary">Registrar producto</a>
+                                        </div>
                                 <div class="dt-responsive table-responsive">
 
                                                     <table id="simpletable"
@@ -37,8 +40,11 @@
                                                         
 
                                                                 <td>{{ $item->nombre}}</td>
-                                                                <td>{{ $item->stock_actual}} disponibles</td>
-                                                                <td>{{ $item->precio}}</td>
+                                                                <td>{{ $item->stock_actual}} disponibles  <button onclick="suma({{($item->id)}});" value="click">
+<i class="fa fa-plus" style="font-size: 20px; color:green;" title="Añadir productos al stock"> 
+</i>
+</button> </td>
+                                                                <td>{{ number_format($item->precio)}}</td>
                                                                 <td>{{ $item->descripcion}}</td>
 
                                                                 
@@ -74,6 +80,15 @@
                                                                     $item->id], 'method' => 'DELETE', 'id' =>
                                                                     'confirm-delete']) !!}
 
+                                                                    {!! Form::close() !!}
+
+                                                                    {!! Form::open(['route' =>['producto.suma'], 'method' => 'POST', 'id' =>'confirm-suma']) !!}
+                                                                     
+                                                                     <input type="hidden" id="stock_actual" name="suma" value="">
+
+                                                                      <input type="hidden" id="product_id" name="product_id" value="">
+
+                                                   
                                                                     {!! Form::close() !!}
 
 </td>
@@ -249,6 +264,47 @@ function products(){
     }
 
 
+
+
+
+    function suma(product_id){
+
+Swal.fire({
+title: "Añadir productos al stock",
+html:  ` <strong style="color: black;"><label class="alinear mt-2">Cantidad<span style="color:red">*</span></label></strong>
+
+
+<input type="text" name="stock_actual" class="form-control" id="p_cantidad" placeholder="Introduzca la cantidad">
+
+
+`,
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Aceptar',
+cancelButtonText: 'Cancelar'
+
+}).then((result) => {
+if (result.value) {
+  //Tomo el valor del input
+var inputVal = document.getElementById("p_cantidad").value;
+
+//Mando el valor del input para que se reemplace en el form
+
+  $('#stock_actual').val(inputVal);
+  $('#product_id').val(product_id);
+
+  $('#confirm-suma').submit();
+
+
+}
+})
+
+
+    
+    
+
+}
 
 
 </script>

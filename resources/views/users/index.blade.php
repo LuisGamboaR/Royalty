@@ -15,6 +15,9 @@
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
+                                    <div class="float-right mb-2" >
+                                            <a href="{{ route('usuarios.create') }}" class="btn btn-primary">Registrar usuario</a>
+                                        </div>
                                     <div class="table-responsive table--no-card m-b-30">
                                     <table  class="table table-striped table-bordered nowrap">
                                         <thead>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Client;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Bitacora;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ClientController extends Controller
@@ -81,17 +84,16 @@ class ClientController extends Controller
 }
 
 
+$client->save();
 
+ $bitacoras = new Bitacora;
 
-// $bitacoras = new App\Bitacora;
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha registrado un nuevo cliente';
+ $bitacoras->save();
 
-// $bitacoras->user =  Auth::user()->name;
-// $bitacoras->lastname =  Auth::user()->lastname;
-// $bitacoras->role =  Auth::user()->role;
-// $bitacoras->action = 'Ha registrado un nuevo trabajador';
-// $bitacoras->save();
-
-        $client->save();
+     
 
         Alert::success('Operación realizada con éxito','¡Cliente registrado!');
 
@@ -145,6 +147,15 @@ class ClientController extends Controller
 
         $clientsUpdate->save();
 
+        
+ $bitacoras = new Bitacora;
+
+ $bitacoras->user =  Auth::user()->name;
+ $bitacoras->lastname =  Auth::user()->lastname;
+ $bitacoras->action = 'Ha editado un cliente';
+ $bitacoras->save();
+
+
         Alert::success('Operación realizada con éxito','¡Cliente editado!');
 
         return redirect()->route('clientes.index');
@@ -162,14 +173,14 @@ class ClientController extends Controller
     {
         $clientsDelete = Client::findOrFail($id);
 		
-        // $bitacorasDelete = new App\Bitacora;
-        
-        // $bitacorasDelete->user =  Auth::user()->name;
-        // $bitacorasDelete->lastname =  Auth::user()->lastname;
-        // $bitacorasDelete->role =  Auth::user()->role;
-        // $bitacorasDelete->action = 'Ha eliminado una materia prima';
-        // $bitacorasDelete->save();
                 $clientsDelete->delete();
+
+                   $bitacorasDelete = new Bitacora;
+        
+        $bitacorasDelete->user =  Auth::user()->name;
+        $bitacorasDelete->lastname =  Auth::user()->lastname;
+        $bitacorasDelete->action = 'Ha eliminado un cliente';
+        $bitacorasDelete->save();
                 Alert::success('Operación realizada con éxito','¡Cliente eliminado!');
         
                 return redirect()->route('clientes.index');

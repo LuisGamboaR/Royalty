@@ -40,7 +40,7 @@
                                     <h2 class="number">
                                     <?php
                                   
-                                    print_r($dinero[0]->dinero);?> BsS.
+                                    print_r(number_format($dinero[0]->dinero));?> BsS.
                                         
                                     
                                     
@@ -53,7 +53,7 @@
                                     </style>
                                     <span class="desc">Dinero total</span>
                                     <div class="icon ">
-                                        <i class="zmdi zmdi-money"></i>
+                                        <i class="zmdi zmdi-money" style="color: green;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -67,8 +67,8 @@
                                 <div class="statistic__item">
                                     <h2 class="number">{{ $users }}</h2>
                                     <span class="desc">Usuarios</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-account-o"></i>
+                                    <div class="icon" >
+                                        <i class="zmdi zmdi-account-o" style="color: #007bff;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                     <h2 class="number">{{ $products }}</h2>
                                     <span class="desc">Productos</span>
                                     <div class="icon">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                        <i class="zmdi zmdi-shopping-cart" style="color: #007bff;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                     <h2 class="number">{{ $clients }}</h2>
                                     <span class="desc">Clientes </span>
                                     <div class="icon">
-                                        <i class="zmdi zmdi-accounts-outline"></i>
+                                        <i class="zmdi zmdi-accounts-outline" style="color: #007bff;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                                     </h2>
                                     <span class="desc">Ventas</span>
                                     <div class="icon ">
-                                        <i class="zmdi zmdi-money"></i>
+                                        <i class="zmdi zmdi-money" style="color: #007bff;"></i>
                                     </div>
                                 </div>
                             </div>
