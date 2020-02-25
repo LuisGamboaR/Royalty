@@ -24,6 +24,8 @@ Route::resource('productos','ProductController');
 Route::resource('clientes-productos','ClientProductController');
 Route::resource('bitacoras','BitacoraController');
 Route::resource('gastos','GastoController');
+Route::resource('cierre','CierreController');
+
 
 
 

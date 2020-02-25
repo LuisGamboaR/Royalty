@@ -9,12 +9,27 @@
                             <div class="col-md-12">
                                 <div class="au-breadcrumb-content">
                                     <div class="au-breadcrumb-left">
-                                        <span class="au-breadcrumb-span">Estas en:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                            <li class="list-inline-item active">
-                                                <a href="#">Home</a>
+                                            <li class="list-inline-item active" id="ar">
+                                            <button  id="button" href="" class="btn btn-primary mt-2">
+                                        <i class=""></i>Rellenar stock</button>
                                             </li>
-                                    
+
+                                            <li class="list-inline-item active" id="ar">
+                                            <button id="button" class="btn btn-primary mt-2">
+                                        <i class=""></i>Vender producto</button>
+                                            </li>
+
+                                            <li class="list-inline-item active" id="ar">
+                                            <button id="button" class="btn btn-primary mt-2">
+                                        <i class=""></i>Registrar gasto</button>
+                                            </li>
+
+                                            <li class="list-inline-item active" id="ar">
+                                            <button id="button" class="btn btn-primary mt-2">
+                                        <i class=""></i>Vender productos</button>
+                                            </li>
+
                                         </ul>
                                     </div>
                               
@@ -27,6 +42,16 @@
             <!-- END BREADCRUMB-->
 
             
+        {!! Form::open(['route' =>['cierre.store'], 'method' => 'POST', 'id' =>'confirm-cierre']) !!}
+                                                                     
+                                                                     <input type="hidden" id="b_punto" name="b_punto" value="">
+                                                                     <input type="hidden" id="b_efectivo" name="b_efectivo" value="">
+                                                                     <input type="hidden" id="d_efectivo" name="d_efectivo" value="">
+                                                           
+                                                           
+                                                                                                              
+                                                                    {!! Form::close() !!}
+                                                           
          
 
             <!-- STATISTIC-->
@@ -49,12 +74,54 @@
                                     p {
                                         font-size: 15px;
                                     }
+
+                                  
+                                                                 
+
                                     
                                     </style>
+
+                                    <span class="desc">Venta diaria</span>
+                                    <div class="icon ">
+                                        <i class="zmdi zmdi-money" style="color: green;"></i>
+                                    </div> <br><br>
+                                    <button onclick="cierre();" id="botonventa" href="" class="btn btn-primary mt-2">
+                                        <i class=""></i>Cierre del día</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid" id="dinero">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="statistic__item">
+                                    <h2 class="number">
+                                    <?php
+                                  
+                                    print_r(number_format($diario[0]->d_diario));?> BsS.
+                                        
+                                    
+                                    
+                                    </h2>
+                                    <style>
+                                    p {
+                                        font-size: 15px;
+                                    }
+
+                                  
+                                                                 
+
+                                    
+                                    </style>
+
                                     <span class="desc">Dinero total</span>
                                     <div class="icon ">
                                         <i class="zmdi zmdi-money" style="color: green;"></i>
-                                    </div>
+                                    </div> <br><br>
+                                    <button onclick="cierre();" id="botonventa" href="" class="btn btn-primary mt-2">
+                                        <i class=""></i>Realizar gasto</button>
                                 </div>
                             </div>
                         </div>
@@ -200,6 +267,8 @@
             
         </div>
 
+</td>
+
     </div>
 
     
@@ -216,5 +285,68 @@
     margin-top: -5px;
 }
 </style>
+@endsection
+
+@section('script')
+
+<script>
+
+function cierre(product_id){
+
+Swal.fire({
+title: "Cierre diario",
+html:  `  <div class="form-group">
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black" >Bolivares por punto</strong><span style="color:red">*</span>
+        <input type="text" id="input" name="b_punto" class="form-control" placeholder="Por favor introduzca la cantidad de dinero " style="text-align:left;" >
+
+        </div>
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Bolivares en efectivo</strong><span style="color:red">*</span>
+        <input type="text" id="input2" name="b_efectivo" class="form-control" placeholder="Por favor introduzca la cantidad de dinero " style="text-align:left;" >
+       
+        </div>
+        <div class="mt-3 col-sm-12">
+        <strong style="color:black">Dolares en efectivo</strong><span style="color:red">*</span>
+            <input type="text" class="form-control" id="input3" name="d_efectivo" placeholder="Por favor introduzca la cantidad de dinero "style="text-align:left;">
+        </div>
+    </div>
+
+
+`,
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Aceptar',
+cancelButtonText: 'Cancelar'
+
+}).then((result) => {
+if (result.value) {
+  //Tomo el valor del input
+var inputVal1 = document.getElementById("input").value;
+var inputVal2 = document.getElementById("input2").value;
+var inputVal3 = document.getElementById("input3").value;
+
+
+//Mando el valor del input para que se reemplace en el form
+
+  $('#b_punto').val(inputVal1);
+  $('#b_efectivo').val(inputVal2);
+  $('#d_efectivo').val(inputVal3);
+
+ $('#confirm-cierre').submit();
+
+
+}
+})
+
+
+    
+    
+
+}
+
+</script>
+
 @endsection
 

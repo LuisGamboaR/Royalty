@@ -6,7 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\ProductUpdateRequest;
-use  App\Bitacora;
+use App\Bitacora;
 use Illuminate\Support\Facades\Auth;
 use DB;
 

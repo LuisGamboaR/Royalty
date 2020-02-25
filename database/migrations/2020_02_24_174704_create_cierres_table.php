@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGastosTable extends Migration
+class CreateCierresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateGastosTable extends Migration
      */
     public function up()
     {
-        Schema::create('gastos', function (Blueprint $table) {
+        Schema::create('cierres', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
-            $table->enum('razon',['PROVEEDORES','DOLARES']);
-            $table->integer('cantidad');
-            $table->integer('d_anterior');
-            $table->text('descripcion')->nullable();
+
+                      
+            $table->bigInteger('b_punto');
+            $table->bigInteger('diario');
+            $table->integer('b_efectivo');
+            $table->integer('d_efectivo');
 
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateGastosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gastos');
+        Schema::dropIfExists('cierres');
     }
 }

@@ -46,6 +46,9 @@ class HomeController extends Controller
 
         $dinero = DB::select('SELECT dinero FROM dineros WHERE id = 1');
 
+        $diario = DB::select('SELECT d_diario FROM diarios WHERE id = 1');
+
+
       
 
       
@@ -54,7 +57,7 @@ class HomeController extends Controller
 
 
 
-        return view('home', compact('clients', 'users', 'products', 'dinero', 'ventas'));
+        return view('home', compact('clients', 'users', 'products', 'dinero', 'ventas', 'diario'));
    
     }
 }
