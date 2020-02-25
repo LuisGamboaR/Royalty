@@ -37,6 +37,12 @@
                             <a href="{{ route('clientes-productos.index') }}">
                             <i class="fas fa-usd"></i></i>Ventas</a>
                         </li>
+
+                        
+                        <li>
+                            <a href="{{ route('cierre.index') }}">
+                            <i class="fas fa-usd"></i></i>Cierres</a>
+                        </li>
                       
 
                         <li class="">

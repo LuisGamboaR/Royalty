@@ -101,6 +101,26 @@ class CierreController extends Controller
         return redirect()->route('home');
     }
 
+
+
+    function fetch_data(Request $request)
+    {
+   
+
+
+        $data= \DB::select('SELECT products.nombre AS proNombre, clients.nombre AS cliNombre, client_product.cantidad, client_product.total, client_product.created_at, products.precio 
+        FROM products, clients, client_product WHERE DATE(client_product.created_at) = ?', [$request->from_date]);
+
+
+
+       
+
+
+   
+      echo json_encode($data);
+     
+    }
+
     /**
      * Display the specified resource.
      *

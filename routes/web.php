@@ -50,6 +50,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/suma', 'ProductController@suma')->name('producto.suma');
 
+Route::post('/fetch_data', 'CierreController@fetch_data')->name('cierre.fetch_data');
+
+
 //AJAX
 Route::get('/getproducts', 'ClientProductController@getproducts')->name('producto.getproducts');
 Route::get('/getclients', 'ClientProductController@getclients')->name('cliente.getclients');

@@ -22,6 +22,10 @@
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/vendor/bootstrap-4.1/bootstrap.min.css') }}">
 
+   
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/bootstrap-datapicker.css') }}">
+
+
 
 <!-- Data Table -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -71,6 +75,8 @@
   <script type="text/javascript" src="{{ asset('assets/admin/bower_components/jquery/js/jquery.min.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('assets/admin/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/admin/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/bootstrap-datapicker.js') }}"></script>
+
     <script type="text/javascript" src="{{ asset('assets/admin/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- Bootstrap JS-->
     <script src="{{ asset('assets\admin\vendor\bootstrap-4.1\popper.min.js') }}"></script>
