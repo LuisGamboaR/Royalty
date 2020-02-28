@@ -19,7 +19,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="card-body">
-                                                {!! Form::model($item , ['route' => ['productos.update', $item->id], 'method' => 'PUT']) !!}
+                                                {!! Form::model($item , ['route' => ['productos.update', $item->id],'id' => 'formulario_registro_productos', 'method' => 'PUT']) !!}
                                                 @method('PUT')
                                                 @include('products.partials.form')
 

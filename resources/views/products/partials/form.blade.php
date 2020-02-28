@@ -26,7 +26,7 @@
       </div>
       <div class="col mt-3">
           <label class="alinear">Stock<span style="color:red">*</span></label>
-          {{ Form::text('stock_actual', null, ['class' => "form-control $errors->has('stock_actual') ? ' is-invalid' : ''", 'id' => 'stock_actual', 'maxlength' => 9, 'placeholder' => 'Introduzca la cantidad de stock del producto']) }}
+          {{ Form::text('stock_actual', null, ['class' => "form-control $errors->has('stock_actual') ? ' is-invalid' : ''", 'id' => 'stock_actual', 'maxlength' => 9999999, 'placeholder' => 'Introduzca la cantidad de stock del producto']) }}
           
       </div>
   </div>
@@ -39,7 +39,7 @@
 
       <div class="col mt-3">
               <label class="alinear">Precio unitario<span style="color:red">*</span></label>
-         {{ Form::text('precio', null, ['class' => "form-control $errors->has('precio') ? ' is-invalid' : ''", 'id' => 'precio', 'maxlength' => 11, 'placeholder' => 'Introduzca el precio unitario del producto']) }}
+         {{ Form::text('precio', null, ['class' => "form-control $errors->has('precio') ? ' is-invalid' : ''", 'id' => 'precio', 'maxlength' => 9999999999, 'placeholder' => 'Introduzca el precio unitario del producto']) }}
 
           </div>
 

@@ -16,8 +16,11 @@
 									<div class="card-body">
                                     <div class="card-block">
                                     <div class="float-right mb-2" >
+                                    @can('productos.create')
                                             <a href="{{ route('productos.create') }}" class="btn btn-primary">Registrar producto</a>
+                                      @endcan
                                         </div>
+
                                 <div class="dt-responsive table-responsive">
 
                                                     <table id="simpletable"
@@ -44,12 +47,14 @@
 <i class="fa fa-plus" style="font-size: 20px; color:green;" title="Añadir productos al stock"> 
 </i>
 </button> </td>
-                                                                <td>{{ number_format($item->precio)}}</td>
+                                                                <td>{{ number_format($item->precio)}} <button onclick="update({{($item->id)}});" value="click">
+<i class="fa fa-pencil-square-o" style="font-size: 20px; color: #007bff;" title="Cambiar precio"> 
+</i>
+</button></td>
                                                                 <td>{{ $item->descripcion}}</td>
 
                                                                 
-                                                                
-
+                                                            
 
                                                                 <td class="text-center">
 
@@ -60,20 +65,21 @@
                                                                             class="fa fa-usd mr-2"
                                                                             style="font-size: 20px"></i></button>
 
-                                                      
+                                                                @can('productos.edit')
                                                                     <a href="{{ route('productos.edit', $item->id) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Editar producto"> <i
                                                                             class="fa fa-pencil-square-o mr-2"
                                                                             style="font-size: 20px"></i></a>
+                                                                            @endcan
+                                                                            @can('productos.edit')
 
-                                                                        
                                                                             <button onclick="destroy({{( $item->id)}});"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Eliminar producto"> <i 
                                                                             class="fa fa-trash mr-2"
                                                                             style="font-size: 20px"></i></button>
-
+                                                                            @endcan
                                    <!--//Con este formulario se manda a la funcion destroy para borrar -->
                                                                 {!! Form::open(['route' =>
                                                                            ['productos.destroy',
@@ -82,11 +88,18 @@
 
                                                                     {!! Form::close() !!}
 
-                                                                    {!! Form::open(['route' =>['producto.suma'], 'method' => 'POST', 'id' =>'confirm-suma']) !!}
+                                                                    {!! Form::open(['route' =>['producto.cambiar'], 'method' => 'POST', 'id' =>'confirm-updatep']) !!}
                                                                      
-                                                                     <input type="hidden" id="stock_actual" name="suma" value="">
+                                                                    <input type="hidden" id="precio" name="precio" value="">
 
                                                                       <input type="hidden" id="product_id" name="product_id" value="">
+                                                                    {!! Form::close() !!}
+
+                                                                    {!! Form::open(['route' =>['producto.suma'],'id' => 'formulario_registro_producto_suma', 'method' => 'POST', 'id' =>'confirm-suma']) !!}
+                                                                     
+                                                                     <input type="hidden" id="suma" name="suma" value="">
+
+                                                                      <input type="hidden" id="id_product" name="product_id" value="">
 
                                                    
                                                                     {!! Form::close() !!}
@@ -267,14 +280,52 @@ function products(){
 
 
 
-    function suma(product_id){
+    function update(product_id){
+
+Swal.fire({
+title: "Cambiar precio del producto",
+html:  ` <strong style="color: black;"><label class="alinear mt-2">Precio<span style="color:red">*</span></label></strong>
+
+
+<input type="text" name="precio" class="form-control" id="p_cambiar" placeholder="Introduzca la cantidad">
+
+
+`,
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Aceptar',
+cancelButtonText: 'Cancelar'
+
+}).then((result) => {
+if (result.value) {
+  //Tomo el valor del input
+
+  var inputVal = document.getElementById("p_cambiar").value;
+
+ 
+
+//Mando el valor del input para que se reemplace en el form
+$('#precio').val(inputVal);
+
+  $('#product_id').val(product_id);
+
+ $('#confirm-updatep').submit();
+
+  
+}
+})
+
+}
+
+function suma(product_id){
 
 Swal.fire({
 title: "Añadir productos al stock",
 html:  ` <strong style="color: black;"><label class="alinear mt-2">Cantidad<span style="color:red">*</span></label></strong>
 
 
-<input type="text" name="stock_actual" class="form-control" id="p_cantidad" placeholder="Introduzca la cantidad">
+<input type="text" name="suma" class="form-control" id="p_cantidad" placeholder="Introduzca la cantidad">
 
 
 `,
@@ -291,20 +342,19 @@ var inputVal = document.getElementById("p_cantidad").value;
 
 //Mando el valor del input para que se reemplace en el form
 
-  $('#stock_actual').val(inputVal);
-  $('#product_id').val(product_id);
+  $('#suma').val(inputVal);
+  $('#id_product').val(product_id);
 
-  $('#confirm-suma').submit();
+
+
+ $('#confirm-suma').submit();
 
 
 }
 })
 
-
-    
-    
-
 }
+
 
 
 </script>

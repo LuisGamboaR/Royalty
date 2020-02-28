@@ -9,6 +9,18 @@ use Storage;
 
 class BackupController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:backup.create')->only(['create', 'store']);
+        $this->middleware('can:backup.index')->only(['index']);
+        $this->middleware('can:backup.delete')->only(['delete']);
+        $this->middleware('can:backup.restore')->only(['index']);
+        $this->middleware('can:backup.download')->only(['index']);
+
+    }
+
+
+
     public function index()
     {
         //Se debe crear la carpeta backups en el storage por que el no la crea 

@@ -38,13 +38,13 @@
                             <i class="fas fa-usd"></i></i>Ventas</a>
                         </li>
 
-                        
+                        @can('cierre.index')
                         <li>
                             <a href="{{ route('cierre.index') }}">
                             <i class="fas fa-usd"></i></i>Cierres</a>
                         </li>
-                      
-
+                        @endcan
+                        @can('gastos.index')
                         <li class="">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-credit-card"></i>Gastos
@@ -53,18 +53,24 @@
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @can('gastos.create')
+
                                 <li>
                                     <a href="{{ route('gastos.create')}}">
                                         <i class="fas fa-credit-card"></i>Registrar gasto</a>
                                 </li>
+                                @endcan
+                                @can('gastos.index')
+
                                 <li>
                                     <a href="{{ route('gastos.index')}}">
                                         <i class="fas fa-credit-card"></i>Listado de gastos</a>
                                 </li>
-                            
+                                @endcan
                             </ul>
                         </li>
-
+                        @endcan
+                        @can('productos.index')
                         <li class="">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-th"></i>Productos
@@ -73,17 +79,24 @@
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @can('productos.create')
+
                                 <li>
                                     <a href="{{ route('productos.create')}}">
                                         <i class="fas fa-th"></i>Registrar producto</a>
                                 </li>
+                                @endcan
+                                @can('productos.index')
+
                                 <li>
                                     <a href="{{ route('productos.index')}}">
                                         <i class="fas fa-th"></i>Listado de productos</a>
                                 </li>
-                            
+                            @endcan
                             </ul>
                         </li>
+                        @endcan
+                        @can('clientes.index')
                         <li class="">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-suitcase"></i>Clientes
@@ -92,41 +105,47 @@
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @can('clientes.create')
                                 <li>
                                     <a href="{{ route('clientes.create')}}">
                                         <i class="fas fa-suitcase"></i>Registrar cliente</a>
                                 </li>
+                            @endcan
+                            @can('clientes.index')
                                 <li>
                                     <a href="{{ route('clientes.index')}}">
                                         <i class="fas fa-suitcase"></i>Listado de clientes</a>
                                 </li>
-                            
+                                @endcan
                             </ul>
                         </li>
-
+                        @endcan
+                    @can('usuarios.index')
                         <li class="">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Usuarios
+                                <i class="fas fa-users "></i>Usuarios
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @can('usuarios.create')
                                 <li>
                                     <a href="{{ route('usuarios.create') }}">
-                                        <i class="fas fa-user"></i>Registrar usuario</a>
+                                        <i class="fas fa-users "></i>Registrar usuario</a>
                                 </li>
+                             @endcan
                                 <li>
                                     <a href="{{ route('usuarios.index') }}">
-                                        <i class="fas fa-user"></i>Listado de usuarios</a>
+                                        <i class="fas fa-users "></i>Listado de usuarios</a>
                                 </li>
                             
                             </ul>
                         </li>
-
+                        @endcan
                       
                         
-
+                        @can('backup.index')
                         <li class="">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-cog "></i>Mantenimiento
@@ -148,7 +167,7 @@
                             
                             </ul>
                         </li>
-
+                        @endcan
 
 
                   

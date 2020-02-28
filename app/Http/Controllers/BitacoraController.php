@@ -7,6 +7,14 @@ use App\Bitacora;
 
 class BitacoraController extends Controller
 {
+
+   public function __construct(){
+      $this->middleware('can:bitacoras.index')->only(['index']);
+  }
+
+
+
+
    public function index(){
 
       $bitacora = Bitacora::orderBy('id', 'DESC')->paginate();

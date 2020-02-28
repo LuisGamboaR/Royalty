@@ -3,11 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
-use App\Client;
-use Illuminate\Validation\Rule;
 
-class ClientUpdateRequest extends FormRequest
+class ClientCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,26 +21,16 @@ class ClientUpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
-        $rif = $this->request->get("rif");
-        $telefono = $this->request->get("telefono");
-        $correo = $this->request->get("correo");
- 
         return [
- 
- 
             'nombre' => 'required|min:3|max:30',
             'rif' => 'string|required|max:15|min:1',
             'direccion' => 'required|min:1|max:50',
-            'telefono' => 'numeric|required|min:11|max:11',
+            'telefono' => 'numeric|required|min:11',
             'correo' => 'email|required|min:1|max:25',
-         'correo' => ['required', Rule::unique('clients')->ignore($correo,'correo')],
-         'rif' => ['required', Rule::unique('clients')->ignore($rif,'rif')],
-         'telefono' => ['required', Rule::unique('clients')->ignore($telefono,'telefono')],
-
-         ];
-   
+           
+        ];
     }
 
     public function messages()
@@ -58,7 +45,7 @@ class ClientUpdateRequest extends FormRequest
         'telefono.numeric' => 'Solo puedes ingresar números!',
         'telefono.required' => 'Necesitamos que ingreses el número de teléfono!',
         'telefono.min' => 'Ingresa un número de telefono valido (11) digitos!',
-        'telefono.max' => 'Ingresa un número de telefono valido (11) digitos!',
+        'telefono.max' => 'Ingresa un número de telefodwadano valido (11) digitos!',
         'correo.required' => 'Ingresa el correo del cliente!',
         'correo.email' => 'Ingresa un correo valido',
         'correo.min' => 'Ingresa al menos 1 carácter',

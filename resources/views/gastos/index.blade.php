@@ -28,6 +28,7 @@
                                                 <th>#</th>
                                                 <th>Razón</th>
                                                 <th>Cantidad</th>
+                                                <th>Saldo antes de la operación</th>
                                                 <th>Descripción</th>
                                                 <th>Fecha de registro</th>
                                             </tr>
@@ -38,6 +39,7 @@
                                                     <td>{{ $i++ }}</td>
                                                     <td>{{ $item->razon }}</td>
                                                     <td>{{  number_format($item->cantidad) }} BsS.</td>
+                                                    <td>{{  number_format($item->d_anterior) }} BsS.</td>
                                                     <td>{{ $item->descripcion }}</td>
                                                     <td>{{ date('d-M-Y \a\ \l\a\s H:i:s:A' , strtotime($item->created_at)) }}</td>
 

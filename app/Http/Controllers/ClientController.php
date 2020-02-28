@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:clientes.create')->only(['create', 'store']);
+        $this->middleware('can:clientes.index')->only(['index']);
+        $this->middleware('can:clientes.destroy')->only(['destroy']);
+        $this->middleware('can:clientes.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +49,7 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\ClientCreateRequest $request)
     {
         $client = new Client;
 

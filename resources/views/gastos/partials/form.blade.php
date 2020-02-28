@@ -32,7 +32,7 @@
           </div>
           <div class="col mt-3">
           <label class="alinear">Descripción<span style="color:red">*</span></label>
-          {{ Form::text('descripcion', null, ['class' => "form-control $errors->has('descripcion') ? ' is-invalid' : ''", 'id' => 'descripcion', 'maxlength' => 100, 'placeholder' => 'Introduzca una breve descripcion de la razón del gasto']) }}
+          {{ Form::text('descripcion', null, ['class' => "form-control $errors->has('descripcion') ? ' is-invalid' : ''", 'id' => 'descripcion', 'maxlength' => 50, 'placeholder' => 'Introduzca una breve descripcion de la razón del gasto']) }}
           
       </div>
     
@@ -42,7 +42,7 @@
 
       <div class="col mt-3 col-sm-6">
           <label class="alinear">Cantidad<span style="color:red">*</span></label>
-          {{ Form::text('cantidad', null, ['class' => "form-control $errors->has('cantidad') ? ' is-invalid' : ''", 'id' => 'cantidad', 'maxlength' => 50, 'placeholder' => 'Introduzca la cantidad de dinero']) }}
+          {{ Form::text('cantidad', null, ['class' => "form-control $errors->has('cantidad') ? ' is-invalid' : ''", 'id' => 'cantidad', 'maxlength' => 999999999, 'placeholder' => 'Introduzca la cantidad de dinero']) }}
           
       </div>
 

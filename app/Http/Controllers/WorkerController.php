@@ -17,6 +17,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkerController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:usuarios.create')->only(['create', 'store']);
+        $this->middleware('can:usuarios.index')->only(['index']);
+        $this->middleware('can:usuarios.destroy')->only(['destroy']);
+        $this->middleware('can:usuarios.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,11 +88,24 @@ class WorkerController extends Controller
          die();
   }
 
-
-
-
-
   $user->save();
+
+
+  if ($request->rol = 'ADMIN'){
+
+    $user2 = $user->id;
+     User::find($user2); 
+        $user->assignRole('Admin');
+}
+
+
+  if ($request->rol = 'VENDEDOR'){
+
+    $user2 = $user->id;
+     User::find($user2); 
+        $user->assignRole('Vendedor');
+}
+
 
 
  $bitacoras = new Bitacora;

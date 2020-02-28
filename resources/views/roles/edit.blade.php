@@ -12,16 +12,16 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<center><h4>Editar cliente</h4></center>
+										<center><h4>Editar role</h4></center>
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="card-body">
-                                                {!! Form::model($item , ['route' => ['clientes.update', $item->id],'id' => 'formulario_registro_clientes', 'method' => 'PUT']) !!}
+                                                {!! Form::model($role , ['route' => ['roles.update', $role->id],'id' => 'formulario_registro_roles', 'method' => 'PUT']) !!}
                                                 @method('PUT')
-                                                @include('clients.partials.form')
+                                                @include('roles.partials.form')
 
                                                 {!! Form::close() !!}
 				

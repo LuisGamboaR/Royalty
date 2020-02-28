@@ -25,6 +25,7 @@ Route::resource('clientes-productos','ClientProductController');
 Route::resource('bitacoras','BitacoraController');
 Route::resource('gastos','GastoController');
 Route::resource('cierre','CierreController');
+Route::resource('roles','RoleController');
 
 
 
@@ -49,6 +50,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::post('/suma', 'ProductController@suma')->name('producto.suma');
+Route::post('/cambiar', 'ProductController@cambiar')->name('producto.cambiar');
+
 
 Route::post('/fetch_data', 'CierreController@fetch_data')->name('cierre.fetch_data');
 
@@ -56,3 +59,6 @@ Route::post('/fetch_data', 'CierreController@fetch_data')->name('cierre.fetch_da
 //AJAX
 Route::get('/getproducts', 'ClientProductController@getproducts')->name('producto.getproducts');
 Route::get('/getclients', 'ClientProductController@getclients')->name('cliente.getclients');
+
+
+//Permisos

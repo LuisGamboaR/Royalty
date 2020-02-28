@@ -11,20 +11,20 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<center><h4>Cierres diarios</h4></center>
+										<center><h4>Listado de cierres</h4></center>
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
                                     <div class="float-right mb-2" >
                                     <button onclick="filtro();" class="btn btn-primary">Buscar ventas por dias</button>
                                         </div>
-                                        
+                                <div class="dt-responsive table-responsive">
+
                                                     <table id="simpletable"
-                                                        class="table table-striped table-bordered nowrap text-center mt-3">
+                                                        class="table table-striped table-bordered nowrap text-center">
                                                         
-                                                        <thead class=>
-                                                        
-                                                            <tr>
+                                        <thead>
+                                        <tr>
                                                             <th>#</th>
                                                                 <th>Bolivares punto</th>
                                                                 <th>Bolivares efectivo</th>
@@ -34,11 +34,10 @@
                                                           
 
                                                             </tr>
-                                                        </thead>
-                                                        <tbody class="text-center">
-                                                        
-                                                        @foreach($cierre as $item)
-                                                            <tr>
+                                            </thead>
+                                            <tbody>
+                                             @foreach($cierre as $item)
+                                             <tr>
                                                                 <td><b>{{ $i++ }}</b></td>
                                                         
 
@@ -52,8 +51,11 @@
 
                                                  
                                                             </tr>
-                                                            @endforeach
-                                                        </tbody>
+                                                  
+                                                
+                                               @endforeach
+                                            </tbody>
+
                                                     </table>
                                                 </div>
 
@@ -73,10 +75,12 @@
 </div>  
 @endsection
 
+
+
+
+
 @section('script')
-
 <script>
-
 
 function filtro(){
     //Inicio datepicker
@@ -104,11 +108,20 @@ data:{from_date:from_date, _token:_token},
 dataType:"json",
 success:function(data){
 
-    console.log(data);
+   
 var output = '';
 
 //Cuento los resultados
 $('#resultados').text(data.length);
+
+
+if (data.length === 0) {
+    output += '<td>' + 'No' + '</td>';
+    output += '<td>' + 'se'  + '</td>';
+    output += '<td>' + 'encontró' + '</td>';
+    output += '<td>' + 'ninguna' + '</td>';
+    output += '<td>' + 'fecha' + '</td>';
+   }
 
 //Imprimo los resultados
 for(var count = 0; count < data.length; count++){
@@ -242,3 +255,6 @@ $('#filter').click(function(){
 
 
 </style>
+
+
+

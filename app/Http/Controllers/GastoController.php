@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Bitacora;
 use App\Dinero;
+use App\Diario;
+
 use Illuminate\Support\Facades\Auth;
 
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,6 +16,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class GastoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:gastos.create')->only(['create', 'store']);
+        $this->middleware('can:gastos.index')->only(['index']);
+        $this->middleware('can:gastos.destroy')->only(['destroy']);
+        $this->middleware('can:gastos.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,32 +54,31 @@ class GastoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $diario = DB::select('SELECT * FROM diarios WHERE id = 1');
+
         $gasto = new Gasto;
 
         $gasto->razon            = $request->razon;
         $gasto->cantidad              = $request->cantidad;
         $gasto->descripcion             = $request->descripcion;
+        $gasto->d_anterior              = $diario[0]->d_diario;
 
-
-
-
-        
-
-        
        //Actualizo el inventario
        
-       $dinero = DB::select('SELECT * FROM dineros WHERE id = 1');
+      
 
-      $restarAlDinero = $dinero[0]->dinero - $request->cantidad;
+      $restarAlDinero = $diario[0]->d_diario - $request->cantidad;
 
 
-       $actualizarDinero = Dinero::find(1);
 
-       $actualizarDinero->dinero = $restarAlDinero;
 
+       $actualizarDinero = Diario::find(1);
+
+       $actualizarDinero->d_diario = $restarAlDinero;
 
        
-       if ($actualizarDinero['dinero'] < 0 ) {
+       if ($actualizarDinero['d_diario'] < 0 ) {
         Alert::error('No puedes registrar un gasto mayor al dinero total de la empresa','¡Error en el registro!');
   
         return redirect()->route('gastos.index');

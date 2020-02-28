@@ -3,12 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
-use App\Product;
-use Illuminate\Validation\Rule;
 
-
-class ProductUpdateRequest extends FormRequest
+class ProductCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,24 +21,15 @@ class ProductUpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+     public function rules()
     {
-        $nombre = $this->request->get("nombre");
-
         return [
- 
- 
             'nombre' => 'required|min:3|max:25',
             'stock_actual' => 'numeric|required|min:1',
             'descripcion' => 'required|string|max:50',
             'precio' => 'numeric|required|min:1',
-
-         'nombre' => ['required', Rule::unique('products')->ignore($nombre,'nombre')],
-
-         ];
-   
+        ];
     }
-
 
     public function messages()
 {
@@ -59,3 +46,5 @@ class ProductUpdateRequest extends FormRequest
     ];
 }
 }
+
+

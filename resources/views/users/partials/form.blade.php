@@ -23,7 +23,7 @@
 
         <div class="col mt-1">
             {{ Form::label('correo', 'Correo electrónico') }}<span class="text-danger"> *</span>
-            {{ Form::text('email', null, ['class' => "form-control $errors->has('email') ? ' is-invalid' : ''", 'id' => 'correo', 'maxlength' => 40, 'placeholder' => 'Introduzca el correo electrónico']) }}
+            {{ Form::text('email', null, ['class' => "form-control $errors->has('email') ? ' is-invalid' : ''", 'id' => 'correo', 'maxlength' => 30, 'placeholder' => 'Introduzca el correo electrónico']) }}
         </div>
 
     </div>
@@ -45,18 +45,27 @@
         <div class="col mt-3">
         {{ Form::label('nombre', 'Nombre') }}<span class="text-danger"> *</span>
             {{ Form::text('name', null, ['class' => "form-control $errors->has('name') ? ' is-invalid' : ''", 'id' => 'name', 'maxlength' => 25, 'placeholder' => 'Introduzca el nombre']) }}
-      
-
         </div>
         <div class="col mt-3">
         {{ Form::label('apellido', 'Apellido') }}<span class="text-danger"> *</span>
-            {{ Form::text('lastname', null, ['class' => "form-control $errors->has('lastname') ? ' is-invalid' : ''", 'id' => 'lastname', 'maxlength' => 25, 'placeholder' => 'Introduzca el apellido']) }}    </div>
+            {{ Form::text('lastname', null, ['class' => "form-control $errors->has('lastname') ? ' is-invalid' : ''", 'id' => 'lastname', 'maxlength' => 30, 'placeholder' => 'Introduzca el apellido']) }}    </div>
     </div>
 
     <div class="row">
         <div class="col mt-3">
         {{ Form::label('cedula', 'Cédula') }}<span class="text-danger"> *</span>
-            {{ Form::text('identification', null, ['class' => "form-control $errors->has('identification') ? ' is-invalid' : ''", 'id' => 'identification', 'maxlength' => 9, 'placeholder' => 'Introduzca la cédula']) }}
+            {{ Form::text('identification', null, ['class' => "form-control $errors->has('identification') ? ' is-invalid' : ''", 'id' => 'identification', 'maxlength' => 8, 'placeholder' => 'Introduzca la cédula']) }}
+        </div>
+        <div class="col mt-3">
+        {{ Form::label('rol', 'Rol') }}<span class="text-danger"> *</span>
+
+        <select name="rol" class="form-control">
+        <option value="">Selecciona un rol</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="AUDITOR">AUDITOR</option>
+        <option value="VENDEDOR">VENDEDOR</option>
+        </select>
+
         </div>
     
     </div>

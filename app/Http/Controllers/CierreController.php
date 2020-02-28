@@ -15,6 +15,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CierreController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:cierre.create')->only(['create', 'store']);
+        $this->middleware('can:cierre.index')->only(['index']);
+        $this->middleware('can:cierre.destroy')->only(['destroy']);
+        $this->middleware('can:cierre.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -15,9 +15,12 @@
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
+                                    @can('usuarios.create')
                                     <div class="float-right mb-2" >
                                             <a href="{{ route('usuarios.create') }}" class="btn btn-primary">Registrar usuario</a>
-                                        </div>
+                                        </div>@endcan
+                                        
+                                
                                     <div class="table-responsive table--no-card m-b-30">
                                     <table  class="table table-striped table-bordered nowrap">
                                         <thead>
@@ -28,6 +31,7 @@
                                                 <th>Apellido</th>
                                                 <th>Correo</th>
                                                 <th>Cédula</th>
+                                                
                                                 <th>Opciones</th>
                                             </tr>
                                             </thead>
@@ -41,12 +45,12 @@
                                                     <td>{{ $item->identification }}</td>
 
                                                     <td class="text-center">
-
+@can('usuarios.edit')
 <a href="{{ route('usuarios.edit', $item->id) }}"
     data-toggle="tooltip" data-placement="top"
     title="Editar usuario"> <i
         class="fa fa-pencil-square-o mr-2"
-        style="font-size: 20px"></i></a>
+        style="font-size: 20px"></i></a>@endcan
 
 
 </td>

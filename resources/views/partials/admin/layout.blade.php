@@ -115,6 +115,15 @@
     <script src="{{ asset('assets\admin\vendor\vector-map\jquery.vmap.sampledata.js') }}"></script>
     <script src="{{ asset('assets\admin\vendor\vector-map\jquery.vmap.world.js') }}"></script>
 
+
+
+    <script type="text/javascript" src="{{ asset('assets/admin/jquery-validate/jqueryValidate.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/jquery-validate/additional-methods.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/admin/validaciones.js') }}"></script>
+
+
+
+
     <!-- Main JS-->
     <script src="{{ asset('assets\admin\js\main.js') }}"></script>
 

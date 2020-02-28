@@ -13,6 +13,14 @@ use DB;
 
 class ProductController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:productos.create')->only(['create', 'store']);
+        $this->middleware('can:productos.index')->only(['index']);
+        $this->middleware('can:productos.destroy')->only(['destroy']);
+        $this->middleware('can:productos.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +50,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\ProductCreateRequest  $request)
     {
         $product = new Product;
 
@@ -91,6 +99,33 @@ class ProductController extends Controller
         //
     }
 
+
+    
+    public function cambiar(Request $request){
+
+
+        $productoUpdate = Product::findOrFail($request->product_id);
+
+        $productoUpdate->precio = $request->precio;
+        $productoUpdate->save();
+        
+      
+        $bitacoras = new Bitacora;
+
+        $bitacoras->user =  Auth::user()->name;
+        $bitacoras->lastname =  Auth::user()->lastname;
+        $bitacoras->action = 'Ha sumado stock a un producto' ;
+        $bitacoras->save();
+
+        Alert::success('Operación realizada con éxito','¡Se ha cambiado el precio!');
+
+
+      return redirect()->route('productos.index');
+
+
+    }
+
+
     public function suma(Request $request){
 
 
@@ -100,6 +135,7 @@ class ProductController extends Controller
         
         $inventario = DB::select('SELECT * FROM products WHERE id = ?' , 
         [$request->product_id]);
+
 
        $sumarAlInventario = $inventario[0]->stock_actual + $request->suma;
 

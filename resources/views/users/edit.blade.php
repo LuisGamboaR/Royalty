@@ -19,7 +19,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="card-body">
-                                                {!! Form::model($item , ['route' => ['usuarios.update', $item->id], 'method' => 'PUT']) !!}
+                                                {!! Form::model($item , ['route' => ['usuarios.update', $item->id],'id' => 'formulario_registro_usuarios', 'method' => 'PUT']) !!}
                                                 @method('PUT')
                                                 @include('users.partials.form')
 

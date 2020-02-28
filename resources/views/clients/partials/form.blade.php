@@ -22,11 +22,11 @@
       <div class="col mt-3">
           <label class="alinear">Nombre<span style="color:red">*</span></label>
           
-              {{ Form::text('nombre', null, ['class' => "form-control $errors->has('nombre') ? ' is-invalid' : ''", 'id' => 'nombre', 'maxlength' => 50, 'placeholder' => 'Introduzca el nombre del cliente.']) }}
+              {{ Form::text('nombre', null, ['class' => "form-control $errors->has('nombre') ? ' is-invalid' : ''", 'id' => 'nombre', 'maxlength' => 30, 'placeholder' => 'Introduzca el nombre del cliente.']) }}
       </div>
       <div class="col mt-3">
           <label class="alinear">Rif<span style="color:red">*</span></label>
-          {{ Form::text('rif', null, ['class' => "form-control $errors->has('rif') ? ' is-invalid' : ''", 'id' => 'rif', 'maxlength' => 9, 'placeholder' => 'Introduzca el rif del cliente. Ej: J/R-45356357']) }}
+          {{ Form::text('rif', null, ['class' => "form-control $errors->has('rif') ? ' is-invalid' : ''", 'id' => 'rif', 'maxlength' => 15, 'placeholder' => 'Introduzca el rif del cliente. Ej: J/R-45356357']) }}
           
       </div>
   </div>
@@ -49,7 +49,7 @@
 
   <div class="col mt-3">
           <label class="alinear">Correo<span style="color:red">*</span></label>
-          {{ Form::text('correo', null, ['class' => "form-control $errors->has('correo') ? ' is-invalid' : ''", 'id' => 'correo', 'maxlength' => 20, 'placeholder' => 'Introduzca el correo del proveedor']) }}
+          {{ Form::text('correo', null, ['class' => "form-control $errors->has('correo') ? ' is-invalid' : ''", 'id' => 'correo', 'maxlength' => 25, 'placeholder' => 'Introduzca el correo del cliente']) }}
           
       </div>
      

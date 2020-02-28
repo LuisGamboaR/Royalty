@@ -16,6 +16,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ClientProductController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:clientes-productos.create')->only(['create', 'store']);
+        $this->middleware('can:clientes-productos.index')->only(['index']);
+        $this->middleware('can:clientes-productos.destroy')->only(['destroy']);
+        $this->middleware('can:clientes-productos.edit')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -105,9 +113,18 @@ $clientesArray = [];
         $clipro->cantidad          = $request->cantidad;
         $clipro->precio          = $request->precio;
 
-       $total = $request->cantidad * $request->precio;
+        if($request->client_id == 2){
+            $total = $request->cantidad * 0;
+            $clipro->total = $total;
 
-       $clipro->total = $total;
+        }elseif($request->client_id == 3) {
+            $total = $request->cantidad * 0;
+            $clipro->total = $total;
+        }else{
+            $total = $request->cantidad * $request->precio;
+            $clipro->total = $total;
+        }
+
 
     
 

@@ -11,54 +11,49 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<center><h4>Listado de clientes</h4></center>
+										<center><h4>Listado de roles</h4></center>
 									</div>
 									<div class="card-body">
                                     <div class="card-block">
-                                    @can('clientes.create')
                                     <div class="float-right mb-2" >
-                                            <a href="{{ route('clientes.create') }}" class="btn btn-primary">Registrar cliente</a>
-                                        </div>@endcan
+                                            <a href="{{ route('roles.create') }}" class="btn btn-primary">Registrar role</a>
+                                        </div>
                                     <div class="table-responsive table--no-card m-b-30">
                                     <table  class="table table-striped table-bordered nowrap">
                                         <thead>
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>Id</th>
                                                 <th>Nombre</th>
-                                                <th>Rif</th>
-                                                <th>Dirección</th>
-                                                <th>Correo</th>
+                                                <th>Descripción</th>
                                                 <th>Opciones</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                             @foreach($clients as $item)
+                                             @foreach($roles as $item)
                                                 <tr>
-                                                    <td>{{ $i++ }}</td>
-                                                    <td>{{ $item->nombre }}</td>
-                                                    <td>{{ $item->rif }}</td>
-                                                    <td>{{ $item->direccion }}</td>
-                                                    <td>{{ $item->correo }}</td>
+                                                    <td>{{ $item->id }}</td>
+                                                    <td>{{ $item->name}}</td>
+                                                    <td>{{ $item->description }}</td>
 
                                                     <td class="text-center">
-@can('clientes.edit')
-<a href="{{ route('clientes.edit', $item->id) }}"
-    data-toggle="tooltip" data-placement="top"
-    title="Editar cliente"> <i
-        class="fa fa-pencil-square-o mr-2"
-        style="font-size: 20px"></i></a>@endcan
 
-     @can('clientes.destroy')
+<a href="{{ route('roles.edit', $item->id) }}"
+    data-toggle="tooltip" data-placement="top"
+    title="Editar roles"> <i
+        class="fa fa-pencil-square-o mr-2"
+        style="font-size: 20px"></i></a>
+
+     
         <button onclick="destroy({{( $item->id)}});"
     data-toggle="tooltip" data-placement="top"
-    title="Eliminar cliente"> <i 
+    title="Eliminar roles"> <i 
         class="fa fa-trash mr-2"
         style="font-size: 20px"></i></button>
-@endcan
+
                                    <!--//Con este formulario se manda a la funcion destroy para borrar -->
                                   {!! Form::open(['route' =>
-                                                                    ['clientes.destroy',
+                                                                    ['roles.destroy',
                                                                     $item->id], 'method' => 'DELETE', 'id' =>
                                                                     'confirm-delete']) !!}
 
@@ -106,7 +101,7 @@
 
 
 <script type="text/javascript">
-function destroy(client_id) {
+function destroy(role_id) {
         Swal.fire({
             title: "¡Cuidado!",
     text: "¿Estás seguro que deseas eliminar este cliente",
